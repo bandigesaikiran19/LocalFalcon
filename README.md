@@ -77,7 +77,7 @@ Firstly Install kind for local setup
     - --validating-webhook=:8443
     - --validating-webhook-certificate=/usr/local/certificates/cert
     - --validating-webhook-key=/usr/local/certificates/key
-   - --enable-ssl-passthrough
+    - --enable-ssl-passthrough
 
 7.   helm install filestore -n filestore helm-charts/filestore/ -f examples/filestore/values.yaml --create-namespace
     7.1  curl http://filestore.my-hlf-domain.com:30001
