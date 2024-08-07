@@ -1,0 +1,54 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: forgerorg1
+
+spec:
+  containers:
+  - name: vegeta-container
+    image: asia-south1-docker.pkg.dev/npci-bcoe-dlt-1/ubc-dev/hyperledger/rbi-rest:0.0.1
+    env:
+    - name: OPERATION
+      value: "create_seed"
+    - name: TOKEN_PER_TXN
+      value: "1"
+    - name: TOTAL_TOKENS
+      value: "1"
+    - name: ORDERER_ADDR
+      value: "localhost:7050"
+    - name: CHAIN_CODE_NAME
+      value: "ubc_test2"
+    - name: CHANNEL_NAME
+      value: "mychannel"
+    - name: WORKER_COUNT
+      value: "1"
+    - name: ENDORSERS
+      value: "org1"
+    - name: MSPID
+      value: "org1"
+    - name: MSP_TYPE
+      value: "bccsp"
+    - name: CRYPTO_PATH
+      value: "/tmp/hyperledger-fabric-sharding/dev_setup/organizations/peerOrganizations/org1.org1domain.com"
+    - name: ORG
+      value: "org1.org6domain.com"
+    - name: CORE_ORDERER_TLS_ROOTCERT_FILE
+      value: "/tmp/hyperledger-fabric-sharding/dev_setup/organizations/ordererOrganizations/ordererdomain.com/orderers/orderer.ordererdomain.com/tls/ca.crt"
+    - name: CORE_PEER_TLS_KEY_FILE
+      value: "/tmp/hyperledger-fabric-sharding/dev_setup/organizations/peerOrganizations/rbi.rbidomain.com/peers/peer0.rbi.rbidomain.com/tls/server.key"
+    - name: CORE_PEER_TLS_CERT_FILE
+      value: "/tmp/hyperledger-fabric-sharding/dev_setup/organizations/peerOrganizations/rbi.rbidomain.com/peers/peer0.rbi.rbidomain.com/tls/server.crt"
+    - name: CORE_PEER_ADMIN_KEYSTORE
+      value: "/tmp/hyperledger-fabric-sharding/dev_setup/organizations/peerOrganizations/rbi.rbidomain.com/users/Admin@rbi.rbidomain.com/msp/keystore"
+    - name: CORE_PEER_KEYSTORE
+      value: "/tmp/hyperledger-fabric-sharding/dev_setup/organizations/peerOrganizations/rbi.rbidomain.com/peers/peer0.rbi.rbidomain.com/msp/keystore"
+    - name: PEER_ADMIN_SIGN_CERT
+      value: "/tmp/hyperledger-fabric-sharding/dev_setup/organizations/peerOrganizations/rbi.rbidomain.com/users/Admin@rbi.rbidomain.com/msp/signcerts/Admin@rbi.rbidomain.com-cert.pem"
+    - name: PEER_MSP_PATH
+      value: "/tmp/hyperledger-fabric-sharding/dev_setup/organizations/peerOrganizations/rbi.rbidomain.com/peers/peer0.rbi.rbidomain.com/msp"
+    - name: PEER_MSP_SIGNCERTS
+      value: "/tmp/hyperledger-fabric-sharding/dev_setup/organizations/peerOrganizations/rbi.rbidomain.com/peers/peer0.rbi.rbidomain.com/msp/signcerts/peer0.rbi.rbidomain.com-cert.pem"       
+        
+
+  restartPolicy: Never

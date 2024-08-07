@@ -1,0 +1,15 @@
+# Copyright National Payments Corporation of India. All Rights Reserved.
+# SPDX-License-Identifier:  GPL-3.0
+
+workdir: /opt/gopath/src/github.com/hyperledger/fabric
+peer_internal_service_port: "30002"
+ttlSecondsAfterFinished: "100"
+retry_seconds: 60
+tls_cert_file: /root/cert.pem
+default_msp_dir: /tmp/fabric
+filestore_ssl: false
+# .Values.core_peer_mspconfigpath_override - Use only if your admin username is not "admin". 
+# Not required for identity registration, but we use the same values file for deploying fabric-tools helm chart. 
+# This must be under /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/
+# Eg; /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/<admin-user>/msp
+# core_peer_mspconfigpath_override: /opt/gopath/src/github.com/hyperledger/fabric/peer/crypto/users/admin-org/msp

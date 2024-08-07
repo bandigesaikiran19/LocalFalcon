@@ -1,0 +1,41 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+data:
+  Corefile: |
+    .:53 {
+        errors
+        health {
+           lameduck 5s
+        }
+        ready
+        kubernetes cluster.local in-addr.arpa ip6.arpa {
+           pods insecure
+           fallthrough in-addr.arpa ip6.arpa
+           ttl 30
+        }
+        prometheus :9153
+        forward . /etc/resolv.conf {
+           max_concurrent 1000
+        }
+        file /etc/coredns/whitelabel.db white-label.npci.org.in
+        cache 30
+        loop
+        reload
+        loadbalance
+    }
+  whitelabel.db: |
+      ; white-label.npci.org.in zone
+      white-label.npci.org.in.                   IN          SOA         sns.dns.icann.org.  noc.dns.icann.org. 2019101701 7200 3600 1209600 3600
+      white-label.npci.org.in.                   IN          NS          b.iana-servers.net.
+      white-label.npci.org.in.                   IN          NS          b.iana-servers.net.
+      *.white-label.npci.org.in.                   IN          A           179.100.1.2
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-09-06T05:59:48Z"
+  name: coredns
+  namespace: kube-system
+  resourceVersion: "3234"
+  uid: 47f12cce-e2fc-42ff-a156-2126bba3aa80

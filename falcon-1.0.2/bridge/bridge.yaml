@@ -1,0 +1,11 @@
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bridge
+spec:
+  containers:
+  - name: bridge
+    image: bridge:lastest
+    ports:
+    - containerPort: 80
